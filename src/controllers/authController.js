@@ -48,7 +48,17 @@ const loginUser = catchAsync(async (req, res, next) => {
 });
 
 
+const getMe = catchAsync(async (req, res, next) => {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) {
+        return next(new AppError("User not found", 404));
+    }
+    res.status(200).json({ success: true, user });
+});
+
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getMe,
 };
