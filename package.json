@@ -19,7 +19,9 @@
   },
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
+    "dev": "node --watch app.js",
+    "dev:server": "node --watch app.js",
+    "seed": "node src/utils/seed.js",
     "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles"
   }
 }

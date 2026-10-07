@@ -24,6 +24,7 @@ const employeeRoutes = require("./routes/employeeRoutes");
 const departmentRoutes = require("./routes/departmentRoutes");
 const attendanceRoutes = require("./routes/attendanceRoutes");
 const leaveRequestRoutes = require("./routes/LeaveRequestRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -31,6 +32,7 @@ app.use("/api/employees", employeeRoutes);
 app.use("/api/departments", departmentRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/leaves", leaveRequestRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // const connectedDB = require("./src/config/db");
 // connectedDB();

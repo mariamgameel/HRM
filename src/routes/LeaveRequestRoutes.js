@@ -10,9 +10,9 @@ const {
     updateLeaveStatusSchema,
 } = require("../validators/LeaveRequestVaidator");
 
-router.post("/", auth, authorizeRoles(ROLES.EMPLOYEE), validate(createLeaveSchema), leaveController.createLeave);
-router.get("/my", auth, authorizeRoles(ROLES.EMPLOYEE), leaveController.getMyLeaves);
-router.delete("/:id", auth, authorizeRoles(ROLES.EMPLOYEE), leaveController.deleteLeave);
+router.post("/", auth, authorizeRoles(ROLES.EMPLOYEE, ROLES.ADMIN, ROLES.HR), validate(createLeaveSchema), leaveController.createLeave);
+router.get("/my", auth, authorizeRoles(ROLES.EMPLOYEE, ROLES.ADMIN, ROLES.HR), leaveController.getMyLeaves);
+router.delete("/:id", auth, authorizeRoles(ROLES.EMPLOYEE, ROLES.ADMIN, ROLES.HR), leaveController.deleteLeave);
 router.get("/", auth, authorizeRoles(ROLES.ADMIN, ROLES.HR), leaveController.getAllLeaves);
 router.patch("/:id/status", auth, authorizeRoles(ROLES.ADMIN, ROLES.HR), validate(updateLeaveStatusSchema), leaveController.updateLeaveStatus);
 router.get("/:id", auth, authorizeRoles(ROLES.ADMIN, ROLES.HR, ROLES.EMPLOYEE), leaveController.getLeaveById);

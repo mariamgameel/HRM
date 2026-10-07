@@ -11,9 +11,9 @@ const {
 } = require("../validators/attendanceValidator");
 
 
-router.post("/clockin", auth, authorizeRoles(ROLES.EMPLOYEE), attendanceController.clockIn);
-router.post("/clockout", auth, authorizeRoles(ROLES.EMPLOYEE), attendanceController.clockOut);
-router.get("/my", auth, authorizeRoles(ROLES.EMPLOYEE), attendanceController.getMyAttendance);
+router.post("/clockin", auth, authorizeRoles(ROLES.EMPLOYEE, ROLES.ADMIN, ROLES.HR), attendanceController.clockIn);
+router.post("/clockout", auth, authorizeRoles(ROLES.EMPLOYEE, ROLES.ADMIN, ROLES.HR), attendanceController.clockOut);
+router.get("/my", auth, authorizeRoles(ROLES.EMPLOYEE, ROLES.ADMIN, ROLES.HR), attendanceController.getMyAttendance);
 router.get("/", auth, authorizeRoles(ROLES.ADMIN, ROLES.HR), attendanceController.getAllAttendance);
 router.get("/employee/:employeeId", auth, authorizeRoles(ROLES.ADMIN, ROLES.HR), attendanceController.getEmployeeAttendance);
 router.post("/manual", auth, authorizeRoles(ROLES.ADMIN, ROLES.HR), validate(manualAttendanceSchema), attendanceController.markManualAttendance);
